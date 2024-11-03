@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plates - Finder</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Check login state on page load
+    window.onload = function() {
+        const loggedIn = localStorage.getItem("loggedIn") === "true"; // Check the stored value
+        const loginButton = document.getElementById('changeStyleBtn');
+        const signOutButton = document.getElementById('signOutBtn');
+
+        if (loggedIn) {
+            loginButton.style.display = 'none'; // Hide login button
+            signOutButton.style.display = 'block'; // Show sign out button
+        } else {
+            loginButton.style.display = 'block'; // Show login button
+            signOutButton.style.display = 'none'; // Hide sign out button
+        }
+    };
+
+    function signOut() {
+        // Call the Firebase sign out
+        auth.signOut().then(() => {
+            // Update local storage
+            localStorage.setItem("loggedIn", "false");
+
+            // Handle UI changes
+            document.getElementById('changeStyleBtn').style.display = 'block'; // Show log in button
+            document.getElementById('signOutBtn').style.display = 'none'; // Hide sign out button
+        });
+    }
+</script>
+
+</head>
+
+<body>
+
+  <a href="index.html">
+    <img class="logo" src="Images\output-1.png" alt="Plates">
+  </a>
+  <img class="background" src="https://wallpapercave.com/wp/wp5019587.jpg" >
+
+  <!-- Navbar -->
+  <div class="navbar">
+
+
+
+    <button onclick="goToLikes()">❤️ Likes</button>
+
+    <div id="likesBox" class="likes-box">
+        <div class="likes-header">
+            <h2>Likes</h2>
+            <button class="close-button" onclick="closeLikes()">✖</button>
+        </div>
+        <hr class="divider">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/f2/1b/ef/photo0jpg.jpg" alt="Description of the image" class="likes-image">
+        <div class="liketext"><span class="stars" onclick="showReviews('Salhino Restaurant Reviews')">★★★☆☆</span>
+            <div>
+                <p>Contact
+                    Salhino - Georgian specialties
+                    <p>Waitzstraße 1   |   10629 Berlin-Charlottenburg</p>
+                    
+                    <p>Phone: +49 30 555 94 563 | Mail: info@Salhino.de</p>
+                </p>
+            </div>
+        </div>
+        <hr class="divider2">
+    </div>
+    
+    <button class="login-button"onclick="login()" id="changeStyleBtn">Log In</button>
+    <button class="signout-button" onclick="login()" id="signOutBtn">Sign Out</button>
+
+  </div>
+
+  <!-- Search Container -->
+  <div class="search-container">
+    <h1 class="title">Discover <span class = "plates">Plates</span> and more near you</h1>
+    <input type="text" id="searchInput" placeholder="Search for location...">
+    <button onclick="search()">Search</button>
+  </div>
+
+  
+
+  <div class="belowscreen">
+    <div class="about-us">
+      <h2 class="aboutustext">About Us</h2>
+      <p>At Ctrl Alt Elite, we pride ourselves on being a dynamic and dedicated team committed to excellence in everything we do. Meet our passionate team members:</p>
+      
+      <div class="team-member">
+          <h3>Moath Darkhalil</h3>
+          <p class="job-title">Quality Control</p>
+          <p>Moath is responsible for ensuring that our website is clean, functional, and user-friendly. With his sharp eye for detail, he meticulously tests all features and functionalities, making sure that every interaction is smooth and every page is optimized for performance.</p>
+      </div>
+    
+      <div class="team-member">
+          <h3>Taylor Graham</h3>
+          <p class="job-title">Fullstack Developer</p>
+          <p>Taylor is the tech wizard behind our user-friendly interface, employing his extensive JavaScript skills to create seamless interactions for our customers. His passion for coding translates into an engaging online experience.</p>
+      </div>
+    
+      <div class="team-member">
+          <h3>Hayden Smith</h3>
+          <p class="job-title">CSS & HTML / Styling Specialist</p>
+          <p>Hayden is our design guru, responsible for the visual aesthetics of our platform. With a keen eye for design, he crafts an appealing and intuitive user interface that makes navigation effortless and enjoyable.</p>
+      </div>
+      
+      <div class="team-member">
+          <h3>Connor Brito</h3>
+          <p class="job-title">Base & Logic Architect</p>
+          <p>Connor lays the foundation of our application’s structure and logic. His expertise in backend development ensures that our platform runs smoothly and efficiently, providing users with a reliable experience.</p>
+      </div>
+    </div>
+  </div>
+
+  
+  
+  <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,803 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  height: 100vh;
+  
+}
+
+.navbar {
+    
+  
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.);
+}
+
+.navbar button {
+  background-color: #555;
+  border: none;
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+  border-radius: 50px;
+  min-width: 80px;
+  
+}
+
+.navbar button:last-child {
+  margin-right: 2vw; /* Adjust as needed */
+}
+
+.logo {
+  position: fixed;
+  z-index: 2;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
+  width: 10vw !important;
+  height: 22vh !important; 
+  border-radius: 0px 0px 100px 100px; 
+  z-index: 2;
+  left: 45%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
+  top: -70px; /* Start the logo higher */
+  transition: top 0.3s ease; /* Smooth transition for moving the logo */
+}
+
+
+
+.logo:hover {
+  top: 0px; /* Move the logo down when hovered */
+  cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+}
+
+.title {
+    color: white;
+    text-shadow: 2px 2px 5px black;
+    font-size: 6vh;
+    margin-bottom: 2vh;
+  }
+
+
+  .search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin-top: 40vh;
+}
+
+#searchInput {
+  height: 5vh;
+  width: 30vw;
+  padding: 10px 10px 10px 20px; /* Add left padding to move the text right */
+  font-size: 2vh;
+  margin-bottom: 3vh;
+  border-radius: 50px;
+  border: 3px solid #000000; /* Optional: adds a border to the input */
+}
+  
+  .search-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 10px;
+    border-radius: 50px;
+  }
+  
+  .feeling-lucky {
+    font-size: 16px;
+    font-weight: bolder;
+    color: white;
+    text-shadow: 2px 2px 5px black;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+
+  /* Styles specific to merrygoround.html */
+  .search-container2 {
+    
+    top: 8vh; /* Adjust to place it right below the navbar */
+    left: 3vw; /* Adjust to position it in the right corner */
+    display: flex;
+    align-items: center;
+    position: fixed;
+  }
+  
+  .search-container2 input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    margin-right: 0.5vw; /* Space between input and button */
+  }
+  
+  .search-container2 button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 20px;
+    background-color: #555; /* Button color */
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+    .more-content {
+        display: none; /* Hide content by default */
+        text-align: center;
+    }
+    .show {
+        display: block; /* Show content when 'show' class is added */
+    }
+
+    .buttonColor {
+        margin-top: 15px;
+        border-radius: 50px;
+        padding: 20px; /* Add some padding */
+        width: 100px;
+        height: 30px;
+        color: lightslategray; /* Text color */
+        cursor: pointer; /* Changes the cursor to a pointer */
+        padding: 0; /* Adjust padding as needed */
+        font-size: 1px6; /* Adjust font size */
+    }
+
+/* Centering the carousel on the page */
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+    height: calc(115vh - 200px); /* Adjust height for better visibility */
+    position: relative;
+    top: 10vh; /* Keep this as is for vertical alignment */
+  }
+
+/* Positioning the search container in the top-left under the navbar */
+.search-container.small {
+  position: absolute;
+  top: 60px; /* Right below navbar */
+  left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+/* Styling for search input */
+.search-container.small #searchInput {
+  width: 180px;
+  padding: 8px 12px; /* Adjust padding for a more compact look */
+  font-size: 14px;
+  border-radius: 20px;
+  margin-right: 8px; /* Space between input and button */
+}
+
+/* Smaller styling for search button */
+.search-container.small button {
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 20px;
+  background-color: #555; /* Button color */
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+
+/* General adjustments to ensure centered layout */
+
+
+.carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30vw; /* Increased width */
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.food-card {
+  display: none;
+  flex-shrink: 0;
+  width: 23vw;
+  height: 70vh;
+  text-align: center;
+  padding: 20px;
+  border: 3px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  transition: opacity 0.5s ease; /* Smooth transition for opacity */
+}
+
+
+
+.food-card img {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.scroll-btn {
+  font-size: 5vh; /* Increased font size for arrows */
+  background-color: transparent;
+  cursor: pointer;
+  background-color: lightgrey;
+  color: #333;
+  border: 2px solid #333; /* Thicker border for buttons */
+  border-radius: 5px;
+  padding: 10px 20px; /* Added padding for larger buttons */
+}
+
+.food-card.active {
+  display: block;
+  min-height: 40vh; /* Adjust as needed */
+}
+
+
+.hidden {
+  display: none;
+}
+
+.rating-menu {
+  display: flex;
+  justify-content: center; /* Centers the contents of the flex container */
+  align-items: center; /* Vertically aligns items */
+  margin-right: 20px;
+}
+
+.rating-menu a {
+  margin: 0 30px; /* Space between the text and the divider */
+}
+
+.rating-menu span {
+  margin: 0 30px; /* Space between the text and the divider */
+}
+
+
+
+
+.divider {
+  font-weight: bold; /* Optional: make the line stand out */
+}
+
+
+
+.stars{
+    color: gold;
+    font-size: 4vh;
+}
+
+.stars:hover{
+    text-decoration: underline;
+}
+
+.menu{
+    font-size: 1.5vh;
+}
+
+.divider{
+  font-size: 3vh;
+}
+
+.menu:hover{
+    text-decoration: underline;
+}
+
+
+
+.text-container {
+    overflow: hidden; /* Prevents overflow */
+    transition: max-height 0.3s ease; /* Smooth transition for height change */
+}
+
+.hidden-text {
+    max-height: 0; /* Initially hide the text */
+    overflow: hidden; /* Prevents overflow */
+    transition: max-height 0.3s ease; /* Smooth transition */
+}
+
+.hidden-text.show {
+    max-height: 100px; /* Adjust to the height of your text */
+    /* You may need to adjust this value based on the content */
+}
+
+
+
+
+
+
+.reviews-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 20px;
+    background-color: white;
+    border: 2px solid #007BFF;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure it's on top of other content */
+}
+
+.review {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.hidden {
+    display: none; /* Hide the reviews box initially */
+}
+
+
+.login-container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+  width: 300px;
+  margin-top: 300px; /* Space between navbar and login box */
+  text-align: center;
+}
+
+.login-button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  width: 150px; /* Ensure this matches */
+  margin-right: 30px;
+  padding: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+.signout-button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  width: 150px; /* Ensure this matches */
+  margin-right: 30px;
+  padding: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.signout-button:hover {
+  background-color: #0056b3;
+}
+
+
+.input-group{
+    margin: 20px;
+}
+
+.userlogin{
+    margin: 25px;
+}
+
+.userbox{
+    border-radius: 30px;
+    height: 30px;
+    width: 200px;
+}
+
+.passbox{
+    border-radius: 30px;
+    height: 30px;
+    width: 200px;
+}
+
+.dropdown-container {
+    position: fixed; /* Change to fixed */
+    top: 60px; /* Adjust to space below navbar */
+    right: 50px; /* Align to the right */
+    display: flex;
+    flex-direction: row; /* Stack dropdowns vertically */
+    z-index: 1; /* Ensure it appears above other content */
+}
+
+.dropdown {
+    padding-right: 3rem;
+    padding-left: 2rem; /* Space between dropdowns */
+}
+
+.dropbtn {
+    background-color: #555;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.dropbtn:hover {
+    background-color: #777; /* Darker on hover */
+}
+
+.dropdown-content {
+    display: none; /* Hidden by default */
+    position: absolute;
+    background-color: white;
+    min-width: 160px; /* Minimum width of dropdown */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black; /* Link color */
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block; /* Block display */
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1; /* Light gray on hover */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block; /* Show dropdown on hover */
+}
+
+.slider-content {
+    display: none; /* Hide slider content by default */
+    position: absolute; /* Position relative to dropdown */
+    background-color: white; /* Background for the slider content */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 10px; /* Padding around slider */
+    border-radius: 5px; /* Rounded corners */
+    z-index: 2; /* Ensure it appears above other elements */
+}
+
+.dropdown:hover .slider-content {
+    display: block; /* Show slider on hover */
+}
+
+.distance-slider {
+    width: 100%; /* Full width for the slider */
+    margin: 10px 0; /* Space above and below the slider */
+}
+
+.slider-value {
+    color: black; /* Color for the displayed value */
+    font-size: 14px; /* Adjust font size */
+}
+
+#username{
+    color: gray;
+    padding-left: 15px;
+}
+
+#password{
+    color: gray;
+    padding-left: 15px;
+}
+
+
+
+
+.background{
+    z-index: -1;
+    position: fixed;
+    align-self: center;
+    width: 100vw;
+    height: 100vh;
+    
+}
+
+.belowscreen {
+    background-color: white; /* Light gray background */
+    width: 100vw;
+    margin-top: 0px; /* Margin around the box */
+    position: relative; /* Position relative to allow for offset */
+    top: 32vh; /* Move it down from the top (adjust as needed) */
+    /* Alternatively, use margin-top instead of top */
+}
+
+#signInBtn{
+  width: 18vw;
+  height: 5vh;
+  border-radius: 50px;
+}
+
+#signOutBtn{
+  width: 18vw;
+  height: 5vh;
+  border-radius: 50px;
+}
+
+#signOutBtn2{
+  width: 4.5vw;
+  height: 5vh;
+  border-radius: 50px;
+}
+
+.picture{
+  overflow: hidden;
+  width: 20vw !important;
+  height: 30vh !important;
+}
+
+
+.cardstext{
+  margin-top: 300px;
+}
+
+.liked-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.liked-card img {
+  width: 150px; /* Adjust size as needed */
+  height: auto;
+  border-radius: 10px;
+}
+
+
+
+.plates{
+  font-family: cursive;
+  font-style: italic;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0s 0.5s; /* Delayed visibility for smooth transition */
+}
+
+
+
+
+
+.likes-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -150%); /* Start above the center */
+  background-color: #f9f9f9; /* Light background */
+  border-radius: 10px; /* Rounded corners */
+  border: 1px solid #ccc; /* Border color */
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+  z-index: 2000;
+  opacity: 0; /* Start hidden */
+  visibility: hidden; /* Ensure it’s not visible */
+  width: 30vw;
+  height: 60vh;
+  transition: transform 0.5s ease, opacity 0.5s ease, visibility 0s 0.5s; /* Transition for movement and opacity */
+}
+
+.likes-box.show {
+  transform: translate(-50%, -50%); /* Move to center */
+  opacity: 1; /* Fully visible */
+  visibility: visible; /* Ensure visibility */
+  transition: transform 0.5s ease, opacity 0.5s ease; /* Smooth transition */
+}
+
+.likes-box.hide {
+  transform: translate(-50%, -150%); /* Move back up */
+  opacity: 0; /* Fade out */
+  visibility: hidden; /* Not visible after fade out */
+  transition: transform 0.5s ease, opacity 0.5s ease, visibility 0s 0.5s; /* Smooth transition */
+}
+
+.likes-header {
+  display: flex;
+  justify-content: space-between; /* Space between title and close button */
+  align-items: center; /* Center align items */
+  margin-bottom: 10px; /* Space below the header */
+}
+
+.likes-header h2 {
+  margin: 0; /* Remove default margin */
+  font-size: 1.5em; /* Adjust font size */
+  color: #333; /* Darker text color */
+}
+
+.close-button {
+  background: none; /* No background */
+  border: none; /* No border */
+  width: 40px; /* Width of the button */
+  height: 40px; /* Height of the button */
+  border-radius: 50%; /* Makes the button circular */
+  font-size: 1.5em; /* Size of the close icon */
+  cursor: pointer; /* Pointer cursor */
+  color: #999; /* Close button color */
+  display: flex; /* Use flexbox to center content */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+.close-button:hover {
+  color: red; /* Change color on hover */
+}
+
+.button-container {
+  margin: 10px; /* Space between buttons */
+}
+
+.likesdesc{
+  color: black;
+}
+
+
+
+
+
+.navbar2 {
+    
+  
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 4.3vh;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.);
+}
+
+
+.likes-image {
+  width: 50%; /* Make the image responsive */
+  height: 50%; /* Maintain aspect ratio */
+  overflow: hidden;
+  border-radius: 5px; /* Optional: rounded corners for the image */
+  margin-top: 10px; /* Space above the image */
+  margin-bottom: 10px; /* Space below the image */
+}
+
+
+.image-container {
+  position: relative;
+  width: 100%; /* Adjust the width as needed */
+  max-width: 600px; /* Max width for the container */
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(75%, -250%); /* Adjust for centering */
+  color: white; /* Text color */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  padding: 10px; /* Space around the text */
+  border-radius: 5px; /* Optional: rounded corners */
+  text-align: center; /* Center text */
+}
+
+
+.about-us {
+  padding: 30px;
+  max-width: 800px;
+  margin-top: 10vh; /* Increases space above the About Us box */
+  margin: 40px auto; /* Center the About Us section */
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  z-index: 2;
+}
+
+.aboutustext {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center; /* Center the heading */
+}
+
+.about-us p {
+  font-size: 1.1em;
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.team-member {
+  padding: 15px;
+  margin-bottom: 15px;
+  border-left: 5px solid #007BFF;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.team-member h3 {
+  font-size: 1.3em;
+  color: #007BFF;
+  margin-bottom: 5px;
+}
+
+.team-member p {
+  font-size: 1em;
+  color: #666;
+  margin: 0;
+}
+
+.team-member p.job-title {
+    color: #007BFF; /* Change this to your preferred color */
+    font-size: 18px; /* Change this to your preferred size */
+    font-weight: bold; /* Make it bold for emphasis */
+    margin: 0; /* Remove margin if necessary */
+}
+
+
+
+.cta-button {
+  background-color: #007bff; /* Primary button color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cta-button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+.containerForOnTop {
+  position: relative;
+  display: inline-block;
+}
+
+
+.liketext{
+  color: black;
+  margin-top: -27vh;
+  margin-left: 16vw;
+}
+
+.divider2{
+  margin-top: 5vh ;
+}
+
+.overlay-text {
+  background-color: grey; /* Initial background color */
+  color: white; /* Text color */
+  border: none; /* No border */
+  border-radius: 50px;
+  padding: 15px 20px; /* Padding for the button */
+  text-align: center; /* Center the text */
+  text-decoration: none; /* Remove underline for links */
+  display: inline-block; /* Inline-block for proper sizing */
+  font-size: 16px; /* Font size */
+  margin: 0.5vw; /* Margin around the button */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.overlay-text.red {
+  background-color: red; /* Red color when toggled */
+}
+
+
+
+
+
+

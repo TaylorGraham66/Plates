@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js';
+        import { getAuth, signInWithPopup, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js';
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyBif_Hfb_lzXzgEsCXcSJ_EusHM_YgQZQc",
+            authDomain: "plates-96005.firebaseapp.com",
+            projectId: "plates-96005",
+            storageBucket: "plates-96005.appspot.com",
+            messagingSenderId: "259993904222",
+            appId: "1:259993904222:web:59b08eca98aea6bb7080cf",
+            measurementId: "G-ZWRHZTZX7G"
+        };
+    
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+    
+        const whenSignedIn = document.getElementById('whenSignedIn');
+        const whenSignedOut = document.getElementById('whenSignedOut');
+        const userDetails = document.getElementById('userDetails');
+        const signInBtn = document.getElementById('signInBtn');
+        const signOutBtn = document.getElementById('signOutBtn');
+    
+        signInBtn.onclick = () => {
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    // User signed in successfully, redirect to index.html
+                    window.location.href = 'index.html';
+                })
+                .catch((error) => {
+                    console.error('Error during sign-in:', error);
+                });
+        };
+    
+        signOutBtn.onclick = () => signOut();
+    
+        function signOut() {
+            auth.signOut().then(() => {
+                localStorage.setItem("loggedIn", "false");
+                document.getElementById('changeStyleBtn').style.display = 'block'; // Show log in button
+                signOutBtn.style.display = 'none'; // Hide sign out button
+                whenSignedIn.hidden = true; // Hide signed-in UI elements
+                whenSignedOut.hidden = false; // Show signed-out UI elements
+                userDetails.innerHTML = ''; // Clear user details
+            });
+        }
+    
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                localStorage.setItem("loggedIn", "true");
+                whenSignedIn.hidden = false;
+                whenSignedOut.hidden = true;
+                userDetails.innerHTML = `<h3>Hello ${user.displayName}!</h3>`;
+                document.getElementById('changeStyleBtn').style.display = 'none'; // Hide log in button
+                signOutBtn.style.display = 'block'; // Show sign out button
+            } else {
+                localStorage.setItem("loggedIn", "false");
+                whenSignedIn.hidden = true;
+                whenSignedOut.hidden = false;
+                userDetails.innerHTML = '';
+                document.getElementById('changeStyleBtn').style.display = 'block'; // Show log in button
+                signOutBtn.style.display = 'none'; // Hide sign out button
+            }
+        });
+    </script>
+        
+    
+
+</head>
+
+<body>
+    <a href="index.html">
+        <img class="logo" src="Images\output-1.png" alt="Plates">
+    </a>
+
+    <div class="navbar2">        
+    </div>
+        <button onclick="home()" id="changeStyleBtn">Home</button>
+    </div>
+
+    <main class="login-container">
+        <h1 class="userlogin">User Login</h1>
+        <form id="loginForm" onsubmit="return handleLogin(event)">
+            <div class="input-group">
+                <input class="userbox" type="text" id="username" placeholder="Username">
+            </div>
+            <div class="input-group">
+                <input class="passbox" type="password" id="password" placeholder="Password">
+            </div>
+            <button type="submit" class="login-button">Login</button>
+        </form>
+    </main>
+    
+    <section id="whenSignedIn" hidden>
+        <div id="userDetails"></div>
+        <button id="signOutBtn">Sign Out</button>
+    </section>
+  
+    <section id="whenSignedOut">
+        <h2>Welcome! Please log in.</h2>
+        <button id="signInBtn">Sign in with Google</button>
+    </section>
+</body>
+</html>

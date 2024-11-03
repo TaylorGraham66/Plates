@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merry-Go-Round - Plates Food Picker</title>
+  <link rel="stylesheet" href="style.css">
+
+  <script>
+    // Check login state on page load
+    window.onload = function() {
+        const loggedIn = localStorage.getItem("loggedIn") === "true"; // Check the stored value
+        const loginButton = document.getElementById('changeStyleBtn');
+        const signOutButton = document.getElementById('signOutBtn');
+
+        if (loggedIn) {
+            loginButton.style.display = 'none'; // Hide login button
+            signOutButton.style.display = 'block'; // Show sign out button
+        } else {
+            loginButton.style.display = 'block'; // Show login button
+            signOutButton.style.display = 'none'; // Hide sign out button
+        }
+    };
+
+</script>
+</head>
+<body>
+
+
+<a href="index.html">
+    <img class="logo" src="Images\output-1.png" alt="Plates">
+</a>
+<img class="background" src="https://wallpapers.com/images/hd/food-4k-anl1yr892h6ccjeb.jpg" >
+  <div class="navbar">
+
+    
+
+
+    <button onclick="goToLikes()">❤️ Likes</button>
+
+    <div id="likesBox" class="likes-box">
+        <div class="likes-header">
+            <h2>Likes</h2>
+            <button class="close-button" onclick="closeLikes()">✖</button>
+        </div>
+        <hr class="divider">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/f2/1b/ef/photo0jpg.jpg" alt="Description of the image" class="likes-image">
+        <div class="liketext"><span class="stars" onclick="showReviews('Salhino Restaurant Reviews')">★★★☆☆</span>
+            <div>
+                <p>Contact
+                    Salhino - Georgian specialties
+                    <p>Waitzstraße 1   |   10629 Berlin-Charlottenburg</p>
+                    
+                    <p>Phone: +49 30 555 94 563 | Mail: info@Salhino.de</p>
+                </p>
+            </div>
+        </div>
+        <hr class="divider2">
+    </div>
+    
+    <button class="login-button"onclick="login()" id="changeStyleBtn">Log In</button>
+    <button class="signout-button" onclick="login()" id="signOutBtn">Sign Out</button>
+
+  </div>
+  
+
+ <!-- Carousel Container -->
+ <main id="results" class="carousel-container">
+    <button class="scroll-btn" aria-label="Previous food option" onclick="prevFood()">❮</button>
+    <div class="carousel">
+        <div class="food-card active" id="card1">
+            <h2 class="leftAlignTitle">Salhino Restaurant</h2>
+            
+            <!-- post 1 , here postId = 1 -->
+                <div class="image-container">
+                    <img class = "picture" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/f2/1b/ef/photo0jpg.jpg" alt="Steak Diner - Delicious grilled steak with sides" />
+                    <button class="overlay-text" onclick="toggleColor()">Like❤️</button>
+                </div>
+            <div class="rating-menu">
+                <span class="stars" onclick="showReviews('Salhino Restaurant Reviews')">★★★☆☆</span>
+                <span class="divider">|</span>
+                <a href="https://www.salhino.de/speisekarte-engl" class="menu">Menu</a>
+            </div>
+            <div>
+                <p>Contact
+                    Salhino - Georgian specialties
+                    <p>Waitzstraße 1   |   10629 Berlin-Charlottenburg</p>
+                    
+                    <p>Phone: +49 30 555 94 563 | Mail: info@Salhino.de</p>
+                    
+                    </p>
+                <div class="hidden-text"><p>Opening hours</p>
+                    Tuesday to Thursday 5:00 p.m. - 11:00 p.m.
+                    Friday 17:00 - 0:00
+                    Saturday 2:00 pm - 0:00 am
+                    Sunday 2:00 pm - 11:00 pm
+                    Monday closed</div>
+                <button class="buttonColor" onclick="toggleText(1)">Show More</button>
+            </div>
+        </div>
+        <!-- post 2 ,postId = 2 -->
+        <div class="food-card" id="card2">
+            <h2>Das Haus der 100 Biere</h2>
+            <div class="image-container">
+                <img class = "picture" src="https://media-cdn.tripadvisor.com/media/photo-o/1c/0c/2e/ed/kudamm-burger.jpg" alt="Pasta Palace - Fresh pasta with handmade sauces" />
+                
+            </div>
+            <div class="rating-menu">
+                <span class="stars" onclick="showReviews('Das Haus der 100 Biere Reviews')">★★★★☆</span>
+                <span class="divider">|</span>
+                <a href="https://100biere.de/en/speisekarte/" class="menu">Menu</a>
+            </div>
+            <div>
+                <p><p>The House of 100 Beers</p>
+                    <p>Kurfürstendamm 100</p>
+                    <p>10709 Berlin</p></p>
+                <div class="hidden-text">
+                    <p>Phone: 030/25 09 29 01</p>
+                    <p>mail@100biere.de</p>
+                    
+                    Sun – Thu 11 am – 0 am
+                    Fri & Sat 11 am – 1 am</div>
+                <button class="buttonColor" onclick="toggleText(2)">Show More</button>
+                
+                </div>
+        </div>
+         <!-- post 2 ,postId = 3 -->
+        <div class="food-card" id="card3">
+            <h2>Restaurant Buschbeck's</h2>
+            <div class="image-container">
+                <img class = "picture" src="https://th.bing.com/th/id/OLC.osYEPw49gfZVSw480x360?rs=1&pid=ImgDetMain" alt="Sushi World - Authentic sushi and sashimi" />
+                
+            </div>
+            <div class="rating-menu">
+                <span class="stars" onclick="showReviews('Restaurant Buschbeck\'s Reviews')">★★★★★</span>
+                <span class="divider">|</span>
+                <a href="https://www.buschbecks-berlin.com/tageskarte/">Menu</a>
+            </div>
+            <div>
+                <p>Trendelenburgstr. 14 · 14057 Berlin</p>
+                <div class="hidden-text">
+                    <p>Opening Hours </p>
+                    Wednesday to Sunday from 6 p.m. to 9 p.m!!
+                </div>
+                <button class="buttonColor" onclick="toggleText(3)">Show More</button>
+                
+
+            </div>
+        </div>
+    </div>
+    <button class="scroll-btn" aria-label="Next food option" onclick="nextFood()">❯</button>
+
+    <!-- Reviews Box -->
+    <div id="reviewsBox" class="reviews-box hidden">
+        <h3>Reviews</h3>
+        <div class="review">
+            <p>Review 1: Great food!</p>
+        </div>
+        <div class="review">
+            <p>Review 2: Excellent service!</p>
+        </div>
+        <button onclick="closeReviews()">Close</button>
+    </div>
+</main>
+  
+  
+  <!-- New Search Bar -->
+  <div class="search-container2">
+    <input type="text" id="locationInput" placeholder="Enter location..." />
+    <button onclick="searchLocation()">Search</button>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+  
+<!-- create a button for like -->
+ <!-- onclickEvent: function(userId, postId) -->
+  <script>
+    function hitLike(postId){
+        // get user info
+        var userInfo = JSON.parse(localStorage.getItem("user"));
+        console.log("saving post ", postId, "for user: ", userInfo["displayName"]);
+        let hitData = {
+            "userId": userInfo["uid"],
+            "postId": postId
+        }
+
+        // call firestore API to put hitData into collections.likes (like table)
+
+
+
+    }
+  </script>
+
+
